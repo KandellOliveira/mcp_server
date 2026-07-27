@@ -5,6 +5,7 @@ from typing import List
 
 from mcp.server.fastmcp import FastMCP
 from mcp_server.legal_open_data import (
+    buscar_jurisprudencia_avancada_lexml,
     buscar_jurisprudencia_lexml,
     detalhe_jurisprudencia_lexml,
 )
@@ -50,6 +51,26 @@ def buscar_jurisprudencia(
 def detalhe_jurisprudencia(url_ou_urn: str) -> dict:
     """Retorna metadados e ementa de um item de jurisprudencia."""
     return detalhe_jurisprudencia_lexml(url_ou_urn)
+
+
+@mcp.tool()
+def buscar_jurisprudencia_avancada(
+    consulta: str,
+    tribunal: str | None = None,
+    orgao: str | None = None,
+    data_inicio: str | None = None,
+    data_fim: str | None = None,
+    limite: int = 5,
+) -> dict:
+    """Busca avancada de jurisprudencia com filtros e resumo para analise."""
+    return buscar_jurisprudencia_avancada_lexml(
+        consulta=consulta,
+        tribunal=tribunal,
+        orgao=orgao,
+        data_inicio=data_inicio,
+        data_fim=data_fim,
+        limite=limite,
+    )
 
 
 def run() -> None:

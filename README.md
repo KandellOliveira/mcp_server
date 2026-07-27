@@ -71,6 +71,7 @@ Exemplo:
 - `inverter_lista(itens: list[str]) -> list[str]`
 - `buscar_jurisprudencia(consulta: str, tribunal: str | None = None, limite: int = 10) -> dict`
 - `detalhe_jurisprudencia(url_ou_urn: str) -> dict`
+- `buscar_jurisprudencia_avancada(consulta: str, tribunal: str | None = None, orgao: str | None = None, data_inicio: str | None = None, data_fim: str | None = None, limite: int = 5) -> dict`
 
 ## Jurisprudencia com dados abertos
 
@@ -86,6 +87,18 @@ Exemplos de parametros:
 
 - `buscar_jurisprudencia(consulta="icms energia", tribunal="stj", limite=5)`
 - `detalhe_jurisprudencia(url_ou_urn="urn:lex:br:superior.tribunal.justica;turma.1:acordao;resp:2006-03-09;601056-676848")`
+
+### Busca avancada para analise
+
+Use `buscar_jurisprudencia_avancada` quando quiser:
+
+- recorte por periodo (`data_inicio` e `data_fim`)
+- filtro de orgao (`turma`, `secao`, `pleno`, `camara`, `carf`)
+- retorno com `resumo_prompt` pronto para colar em um modelo e pedir analise comparativa
+
+Exemplo:
+
+- `buscar_jurisprudencia_avancada(consulta="icms creditamento energia", tribunal="stj", orgao="turma", data_inicio="2015-01-01", data_fim="2024-12-31", limite=3)`
 
 ## Estrutura
 
