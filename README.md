@@ -20,6 +20,12 @@ pip install -e .
 mcp-server-python
 ```
 
+Ou usando o utilitario solicitado:
+
+```bash
+mcpserver
+```
+
 O servidor sobe em modo `stdio`, que e o formato mais comum para integrar com clientes MCP locais.
 
 ## Configurar cliente MCP
