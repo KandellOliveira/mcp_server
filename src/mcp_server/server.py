@@ -4,6 +4,10 @@ from datetime import datetime
 from typing import List
 
 from mcp.server.fastmcp import FastMCP
+from mcp_server.legal_open_data import (
+    buscar_jurisprudencia_lexml,
+    detalhe_jurisprudencia_lexml,
+)
 
 mcp = FastMCP("python-mcp-server")
 
@@ -30,6 +34,22 @@ def agora() -> str:
 def inverter_lista(itens: List[str]) -> List[str]:
     """Retorna uma nova lista com os itens em ordem inversa."""
     return list(reversed(itens))
+
+
+@mcp.tool()
+def buscar_jurisprudencia(
+    consulta: str,
+    tribunal: str | None = None,
+    limite: int = 10,
+) -> dict:
+    """Busca jurisprudencia em dados juridicos abertos (LexML)."""
+    return buscar_jurisprudencia_lexml(consulta=consulta, tribunal=tribunal, limite=limite)
+
+
+@mcp.tool()
+def detalhe_jurisprudencia(url_ou_urn: str) -> dict:
+    """Retorna metadados e ementa de um item de jurisprudencia."""
+    return detalhe_jurisprudencia_lexml(url_ou_urn)
 
 
 def run() -> None:

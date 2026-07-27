@@ -69,9 +69,27 @@ Exemplo:
 - `soma(a: float, b: float) -> float`
 - `agora() -> str`
 - `inverter_lista(itens: list[str]) -> list[str]`
+- `buscar_jurisprudencia(consulta: str, tribunal: str | None = None, limite: int = 10) -> dict`
+- `detalhe_jurisprudencia(url_ou_urn: str) -> dict`
+
+## Jurisprudencia com dados abertos
+
+O servidor inclui um modulo para consulta de jurisprudencia em fonte aberta via LexML Brasil.
+
+### Fluxo recomendado
+
+1. Use `buscar_jurisprudencia` com termos como `icms creditamento`, `dano moral consumidor`, `prisao preventiva`.
+2. Pegue a `url` ou `urn` de um resultado.
+3. Use `detalhe_jurisprudencia` para obter metadados e ementa.
+
+Exemplos de parametros:
+
+- `buscar_jurisprudencia(consulta="icms energia", tribunal="stj", limite=5)`
+- `detalhe_jurisprudencia(url_ou_urn="urn:lex:br:superior.tribunal.justica;turma.1:acordao;resp:2006-03-09;601056-676848")`
 
 ## Estrutura
 
 - `src/mcp_server/server.py`: definicao do servidor e tools.
+- `src/mcp_server/legal_open_data.py`: integracao com dados juridicos abertos.
 - `src/mcp_server/__main__.py`: ponto de entrada para execucao.
 - `pyproject.toml`: metadados, dependencias e script CLI.
