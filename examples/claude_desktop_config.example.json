@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "python-mcp-server": {
+      "command": "/CAMINHO/ABSOLUTO/PARA/mcp_server/.venv/bin/python",
+      "args": ["-m", "mcp_server"]
+    }
+  }
+}

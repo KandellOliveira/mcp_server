@@ -9,7 +9,7 @@ Projeto base de um servidor MCP (Model Context Protocol) em Python, pronto para 
 ## Instalar
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
 ```
@@ -21,6 +21,47 @@ mcp-server-python
 ```
 
 O servidor sobe em modo `stdio`, que e o formato mais comum para integrar com clientes MCP locais.
+
+## Configurar cliente MCP
+
+### VS Code
+
+1. Copie `examples/vscode.mcp.example.json` para `.vscode/mcp.json`.
+2. Se necessario, ajuste `command` para o Python da sua venv.
+3. Reinicie o cliente MCP no VS Code.
+
+Exemplo:
+
+```json
+{
+	"servers": {
+		"python-mcp-server": {
+			"type": "stdio",
+			"command": "${workspaceFolder}/.venv/bin/python",
+			"args": ["-m", "mcp_server"]
+		}
+	}
+}
+```
+
+### Claude Desktop
+
+1. Abra o arquivo de configuracao do Claude Desktop.
+2. Copie o conteudo de `examples/claude_desktop_config.example.json`.
+3. Troque `/CAMINHO/ABSOLUTO/PARA/...` pelo caminho real do projeto.
+
+Exemplo:
+
+```json
+{
+	"mcpServers": {
+		"python-mcp-server": {
+			"command": "/CAMINHO/ABSOLUTO/PARA/mcp_server/.venv/bin/python",
+			"args": ["-m", "mcp_server"]
+		}
+	}
+}
+```
 
 ## Tools disponiveis
 
